@@ -49,3 +49,4 @@ The primary goal of this application is to contribute to a more inclusive digita
 
 4. **Complete Color Blindness:**
    - The most rare type, where there is no color perception at all. The world appears in shades of gray, white, and black.
+   ![image4](readme_images/Image4.png)
