@@ -3,15 +3,12 @@ print(sys.path)
 
 from PIL import Image, ImageDraw
 
-
-
 def main():
     #ask the user for an image file they would like to change the colors of
-    #defin the image file into a varible and assign it double quotes
     image_file = ("")
     image_file = input("what is the chart, or image you would like to upload?")
+
     #print a list of different types of color blindness to cutomize to
-    #assign each type a number to make it easier for the user to input the type
     print()
     print("What is your type of color blindness:")
     print("1. deuteranomaly ")
@@ -22,18 +19,14 @@ def main():
     #ask the user for the type of colorblindness
     value_scale = input("Which type of color value scale would you like to convert to?")
 
-    #assign a varible to function to open, display, get the pixels, find the width and height,
-    #and create a new image for the image the user input
+    #assign a varible to function to open, display, get the pixels, find the width and height, and create a new image for the image the user input
     user_image = open_image(image_file)
     show_image(user_image)
     user_pixels = get_pixels(user_image)
     (width, height) = user_image.size
     new_color_image = new_image(user_image)
    
-
-
     # create if statements to lanch the correct function depending on the user input
-
     if value_scale == "1":
         deuteranomaly_colors(user_image, user_pixels, new_color_image, width, height)
     if value_scale == "2":
@@ -65,10 +58,6 @@ def get_pixels(user_image):
     pixels_image = user_image.load()
     return pixels_image
 
-
-
-
-
 def deuteranomaly_colors(user_image, user_pixels, new_color_image, width, height):
     """ Unable to percieve green light. Deuteranomaly  is the most common type of color blindness. 
     it is also known as red/green color blindness. It makes red look brownish/yellowish. 
@@ -77,9 +66,6 @@ def deuteranomaly_colors(user_image, user_pixels, new_color_image, width, height
     for people with Deuteranomaly to tell apart and change them to a color they 
     can easily tell apart. Don't use red/green/brown/orange together. """
     
-    
-
-
     def distance2(color1, color2):
         r1, g1, b1 = color1
         r2, g2, b2 = color2
@@ -90,7 +76,6 @@ def deuteranomaly_colors(user_image, user_pixels, new_color_image, width, height
     threshold = 230
 
     # Create output image
-    
     draw = ImageDraw.Draw(new_color_image)
 
     # Generate image
@@ -106,7 +91,6 @@ def deuteranomaly_colors(user_image, user_pixels, new_color_image, width, height
     #display and save the new image
     new_color_image.show()
     new_color_image.save("new_image.png")
-
 
 def protanopia_colors(user_image, user_pixels, new_color_image, width, height):
     """ it is also known as red/green color blindness. Protanopia happens
@@ -124,9 +108,7 @@ def protanopia_colors(user_image, user_pixels, new_color_image, width, height):
     color_to_change = (255, 0, 0)
     threshold = 230
 
-
     # Create output image
-    
     draw = ImageDraw.Draw(new_color_image)
 
     # Generate image
@@ -143,8 +125,6 @@ def protanopia_colors(user_image, user_pixels, new_color_image, width, height):
     new_color_image.show()
     new_color_image.save("new_image.png")
 
-#there is one type of Blue /yellow color blindness
-
 def tritanopia_colors(user_image, user_pixels, new_color_image, width, height):
     """this is also known as blue/yellow color blindness. it is the 2nd most common
     type of colorblindness. there are no blue cone cells. blue looks green
@@ -156,12 +136,9 @@ def tritanopia_colors(user_image, user_pixels, new_color_image, width, height):
         return (r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2
 
     color_to_change = (0, 255, 0)
-    
     threshold = 230
 
-
     # Create output image
-    
     draw = ImageDraw.Draw(new_color_image)
 
     # Generate image
@@ -179,8 +156,6 @@ def tritanopia_colors(user_image, user_pixels, new_color_image, width, height):
     #display and save the new image
     new_color_image.show()
     new_color_image.save("new_image.png")
-
-#make a function for the third type of color blindness. complete color blindness
 
 def complete_color_blindness(user_image):
     """this is the most rare color blindness someone can have. you have no 
